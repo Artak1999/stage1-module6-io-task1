@@ -13,7 +13,6 @@ public class FileReader {
             while((i = inputStream.read()) != -1) {
                 result += (char) i;
             }
-            System.out.println(result);
             for (int j = 0; j < result.length(); j++) {
                 if(result.contains("Name: "))
                     result = result.replace("Name: ","");
@@ -25,14 +24,10 @@ public class FileReader {
                     result = result.replace("Phone: ","");
             }
             String[] lines = result.split("\\R");
-            String name = lines[0];
-            String age = lines[1];
-            String email = lines[2];
-            String phone = lines[3];
-            profile.setName(name);
-            profile.setAge(Integer.parseInt(age));
-            profile.setEmail(email);
-            profile.setPhone(Long.parseLong(phone));
+            profile.setName(lines[0]);
+            profile.setAge(Integer.parseInt(lines[1]));
+            profile.setEmail(lines[2]);
+            profile.setPhone(Long.parseLong(lines[3]));
             inputStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
