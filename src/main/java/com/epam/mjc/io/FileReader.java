@@ -6,28 +6,28 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
         Profile profile = new Profile();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         try {
             int i;
             FileInputStream inputStream = new FileInputStream(file.getPath());
             while ((i = inputStream.read()) != -1) {
-                result += (char) i;
+                result.append((char) i);
             }
             inputStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         for (int i = 0; i < result.length(); i++) {
-            if (result.contains("Name: "))
-                result = result.replace("Name: ", "");
-            if (result.contains("Age: "))
-                result = result.replace("Age: ", "");
-            if (result.contains("Email: "))
-                result = result.replace("Email: ", "");
-            if (result.contains("Phone: "))
-                result = result.replace("Phone: ", "");
+            if (result.toString().contains("Name: "))
+                result = new StringBuilder(result.toString().replace("Name: ", ""));
+            if (result.toString().contains("Age: "))
+                result = new StringBuilder(result.toString().replace("Age: ", ""));
+            if (result.toString().contains("Email: "))
+                result = new StringBuilder(result.toString().replace("Email: ", ""));
+            if (result.toString().contains("Phone: "))
+                result = new StringBuilder(result.toString().replace("Phone: ", ""));
         }
-        String[] lines = result.split("\\R");
+        String[] lines = result.toString().split("\\R");
         profile.setName(lines[0]);
         profile.setAge(Integer.parseInt(lines[1]));
         profile.setEmail(lines[2]);
