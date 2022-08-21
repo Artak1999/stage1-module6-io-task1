@@ -14,10 +14,12 @@ public class FileReader {
                 result.append((char) i);
             }
             inputStream.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            try {
+                throw new FileNotFoundException();
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         for (int i = 0; i < result.length(); i++) {
             if (result.toString().contains("Name: "))
