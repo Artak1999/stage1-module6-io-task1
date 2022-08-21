@@ -15,11 +15,7 @@ public class FileReader {
             }
             inputStream.close();
         } catch (IOException e) {
-            try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new RuntimeException("File not found");
         }
         for (int i = 0; i < result.length(); i++) {
             if (result.toString().contains("Name: "))
