@@ -4,7 +4,7 @@ import java.io.*;
 
 public class FileReader {
 
-    public Profile getDataFromFile(File file) {
+    public Profile getDataFromFile(File file){
         Profile profile = new Profile();
         StringBuilder result = new StringBuilder();
         try {
@@ -14,6 +14,8 @@ public class FileReader {
                 result.append((char) i);
             }
             inputStream.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
